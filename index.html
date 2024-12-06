@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Meta Tags | Optimiza tu SEO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+</head>
+<body class="bg-gray-50">
+    <div class="container">
+        <header class="page-header">
+            <h1>Generador de Meta Tags para SEO</h1>
+            <p>Optimiza la visibilidad y rendimiento SEO de tu sitio web</p>
+        </header>
+
+        <section class="features-section">
+            <div class="feature-cards">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Optimización SEO</h3>
+                    <p>Crea meta tags precisos para mejorar el posicionamiento de tu sitio web</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Validación en Tiempo Real</h3>
+                    <p>Contador de caracteres y validaciones instantáneas para cada campo</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Exportación Fácil</h3>
+                    <p>Exporta tus meta tags a un documento Word con un solo clic</p>
+                </div>
+            </div>
+        </section>
+
+        <form id="metaTagsForm" class="form-container">
+            <button class="delete-all-btn" onclick="deleteAllFields()">🗑️ Eliminar Todos los Campos</button>
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="title" class="input-label">Título de la página</label>
+                    <input type="text" id="title" class="input-field" maxlength="60">
+                    <div id="titleCounter" class="char-counter">0/60 caracteres</div>
+                    <div class="hint-text">El título ideal para SEO debe ser descriptivo y conciso</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('title')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="description" class="input-label">Meta Descripción</label>
+                    <textarea id="description" class="input-field" rows="2" maxlength="150"></textarea>
+                    <div id="descriptionCounter" class="char-counter">0/150 caracteres</div>
+                    <div class="hint-text">Describe brevemente el contenido de tu página</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('description')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="canonical" class="input-label">URL Canónica</label>
+                    <input type="url" id="canonical" class="input-field" placeholder="https://ejemplo.com">
+                    <div class="error-message" id="canonicalError"></div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('canonical')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="favicon" class="input-label">Favicon</label>
+                    <input type="text" id="favicon" class="input-field" placeholder="ruta/favicon.ico">
+                    <div class="error-message" id="faviconError"></div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('favicon')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogType" class="input-label">Open Graph Type:</label>
+                    <select id="ogType" class="select-type">
+                        <option value="">Selecciona un tipo...</option>
+                        <option value="website">Website</option>
+                        <option value="article">Article</option>
+                        <option value="product">Product</option>
+                        <option value="video">Video</option>
+                        <option value="profile">Profile</option>
+                        <option value="book">Book</option>
+                    </select>
+                    <small class="form-text text-muted">Selecciona el tipo de contenido para Open Graph.</small>
+                </div>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogSiteName" class="input-label">Open Graph Site Name</label>
+                    <input type="text" id="ogSiteName" class="input-field" placeholder="Nombre del sitio" maxlength="20">
+                    <div id="ogSiteNameCounter" class="char-counter">0/20 caracteres</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('ogSiteName')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogUrl" class="input-label">Open Graph URL</label>
+                    <input type="url" id="ogUrl" class="input-field" placeholder="https://ejemplo.com">
+                    <div class="error-message" id="ogUrlError"></div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('ogUrl')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogImage" class="input-label">Open Graph Image URL</label>
+                    <input type="url" id="ogImage" class="input-field" placeholder="https://ejemplo.com/imagen.jpg">
+                    <div class="error-message" id="ogImageError"></div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('ogImage')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogTitle" class="input-label">Open Graph Title</label>
+                    <input type="text" id="ogTitle" class="input-field" maxlength="70">
+                    <div id="ogTitleCounter" class="char-counter">0/70 caracteres</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('ogTitle')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="ogDescription" class="input-label">Open Graph Description</label>
+                    <textarea id="ogDescription" class="input-field" rows="2" maxlength="160"></textarea>
+                    <div id="ogDescriptionCounter" class="char-counter">0/160 caracteres</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('ogDescription')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="twitterImage" class="input-label">Twitter Image URL</label>
+                    <input type="url" id="twitterImage" class="input-field" placeholder="https://ejemplo.com/imagen.jpg">
+                    <div class="error-message" id="twitterImageError"></div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('twitterImage')" title="Eliminar campo">❌</button>
+            </div>
+    
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="twitterTitle" class="input-label">Twitter Title</label>
+                    <input type="text" id="twitterTitle" class="input-field" maxlength="70">
+                    <div id="twitterTitleCounter" class="char-counter">0/70 caracteres</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('twitterTitle')" title="Eliminar campo">❌</button>
+            </div>
+
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label for="twitterDescription" class="input-label">Twitter Description</label>
+                    <textarea id="twitterDescription" class="input-field" rows="2" maxlength="160"></textarea>
+                    <div id="twitterDescriptionCounter" class="char-counter">0/160 caracteres</div>
+                </div>
+                <button type="button" class="delete-field-btn" onclick="deleteField('twitterDescription')" title="Eliminar campo">❌</button>
+            </div>
+
+            <div class="input-group-wrapper">
+                <div class="input-group" style="flex-grow: 1;">
+                    <label class="input-label">Meta Robots</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="noindex" class="checkbox-input">
+                            <span>noindex</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="nofollow" class="checkbox-input">
+                            <span>nofollow</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="generate-button" onclick="generateMetaTags()">
+                Generar Meta Tags
+            </button>
+
+            <div id="outputContainer" class="output-container" style="display: none;">
+                <div class="output-header">
+                    <h2>Meta Tags Generados</h2>
+                    <div class="output-actions">
+                        <button type="button" class="copy-button" onclick="copyMetaTags()">
+                            📋 Copiar
+                        </button>
+                        <button type="button" class="export-button" onclick="exportToWord()">
+                            📄 Exportar a Word
+                        </button>
+                    </div>
+                </div>
+                <div class="meta-tag" id="outputTags"></div>
+            </div>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
