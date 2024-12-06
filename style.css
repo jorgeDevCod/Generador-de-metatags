@@ -163,6 +163,7 @@ textarea.input-field:focus,
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .output-actions {
