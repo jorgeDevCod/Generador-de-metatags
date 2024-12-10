@@ -215,11 +215,11 @@ textarea.input-field:focus,
 
 .delete-field-btn {
     position: relative;
-    bottom: 6px;
+    bottom: 8px;
     background-color: #e74c3c;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 10px 12px;
     font-size: 16px;
     border-radius: 6px;
     display: flex;
